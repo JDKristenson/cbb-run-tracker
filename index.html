@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBB Run Tracker - College Basketball Live Alerts</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #ff6b6b, #feca57);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: #a0a0a0;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            color: #fff;
+            padding: 16px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin: 60px 0;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: #feca57;
+        }
+
+        .stat-label {
+            color: #a0a0a0;
+            margin-top: 8px;
+        }
+
+        .how-it-works {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+
+        .how-it-works h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        .steps {
+            display: grid;
+            gap: 30px;
+        }
+
+        .step {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            margin-bottom: 8px;
+        }
+
+        .step-content p {
+            color: #a0a0a0;
+            line-height: 1.6;
+        }
+
+        .alert-preview {
+            background: #0f0f1a;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 40px 0;
+            font-family: monospace;
+        }
+
+        .alert-preview .emoji {
+            font-size: 24px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #666;
+        }
+
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 32px;
+            }
+            .stats {
+                gap: 30px;
+            }
+            .stat-number {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <div class="badge">Free During Beta</div>
+            <h1>CBB Run Tracker</h1>
+            <p class="subtitle">
+                Real-time alerts when college basketball underdogs go on scoring runs.<br>
+                A data-driven edge for live betting.
+            </p>
+            <a href="https://twitter.com/JDKristenson" class="cta-button">Follow on Twitter/X</a>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number" id="win-rate">--</div>
+                <div class="stat-label">Win Rate</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="alerts">--</div>
+                <div class="stat-label">Alerts Sent</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">60s</div>
+                <div class="stat-label">Tweet Delay</div>
+            </div>
+        </div>
+
+        <div class="how-it-works">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Monitor Every Game</h3>
+                        <p>We track all D1 men's college basketball games in real-time, monitoring score changes every 15 seconds.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Detect Underdog Runs</h3>
+                        <p>When a betting underdog goes on an 8-0 or larger scoring run, that's our trigger. These runs often cause market overreaction.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Alert with Context</h3>
+                        <p>You get the score, time, ESPN's live win probability, and the closing line favorite. All the data you need to make a decision.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-preview">
+            <span class="emoji">&#128680;</span> <strong>UNDERDOG RUN ALERT</strong><br><br>
+            Cornell Big Red on 8-0 run vs Michigan St<br><br>
+            Score: 45-52 (-7)<br>
+            Time: 8:34 - 1st Half<br>
+            ESPN Live: Michigan St 72%<br><br>
+            Strategy: Bet closing line fav (Michigan St)<br><br>
+            #CBB #CollegeBasketball
+        </div>
+
+        <div style="text-align: center; margin: 40px 0;">
+            <h2 style="margin-bottom: 20px;">The Strategy</h2>
+            <p style="color: #a0a0a0; max-width: 600px; margin: 0 auto; line-height: 1.8;">
+                When underdogs go on runs, casual bettors often pile on, moving the live line.
+                But favorites are favorites for a reason. They usually recover.
+                By betting the <strong>closing line favorite</strong> (the pre-game favorite),
+                you're betting on regression to the mean with better odds than the live line offers.
+            </p>
+        </div>
+
+        <div class="footer">
+            <p>Built by <a href="https://twitter.com/JDKristenson">@JDKristenson</a></p>
+            <p style="margin-top: 10px; font-size: 12px;">
+                For entertainment and educational purposes. Gamble responsibly.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
